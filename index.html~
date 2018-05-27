@@ -559,7 +559,7 @@
       <!-- dynamically add pagination links here -->
 
     </div>
-    <scripts src="js/functions.js" ></scripts> 
+    <scripts src="/js/functions.js" ></scripts> 
   </body>
 </html>
 
