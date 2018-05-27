@@ -19,7 +19,20 @@ const studentListDOM = document.querySelector(".student-list").children; // acce
 const studentEmail = (student) => student.querySelector("div span").innerText;//access a studentListDOM email text
 const studentName = (student) => student.querySelector("div h3").innerText;//acces to studentListDOM name text
 
+function hideAndAppened(studentListDOM) {
+	studentListDOM.style.display = "none";//adding a style to hide all the students from the html
 
-document.querySelector(".student-list").style.display = "none";
+	//add an html addition every loop from a changing arrey,each arrey instence will be a set of diffrent students according the the order of original arrey	
+	for (let i; i<=Math.floor(studentListDOM/10);i++){
+	//changing arreyfevery loop		
+	let page = studentListDOM.splice(0, 10);
+
+	//access to  div elemetn with .page-header class so to appened it the random page link	
+	const divHeader = document.querySelector('.pages-header');
+
+	//creat a button elemente
+	//attach the hidden students arrey instence to the button(say that 5 times xD)
+	}
+
 	
 alert("im working");
