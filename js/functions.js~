@@ -10,6 +10,16 @@ step 3
 
 append page links function
 
+step 4 
 
+search based on email
 */
-console.log("im working");
+const studentListDOM = document.querySelector(".student-list").children; // acces to list of li containing students
+//accessing the email and name of students
+const studentEmail = (student) => student.querySelector("div span").innerText;//access a studentListDOM email text
+const studentName = (student) => student.querySelector("div h3").innerText;//acces to studentListDOM name text
+
+
+document.querySelector(".student-list").style.display = "none";
+	
+alert("im working");
