@@ -27,7 +27,8 @@ function hideAll (){
 
 	//adding a style to hide all the students from the html
 	for (let i=0; i<studentListDOM.length;i++){
-	studentListDOM[i].style.display = "none";//adding a style to hide all the students from the html
+	studentListDOM[i].style.display = 'none';//adding a style to hide all the students from the html
+
 	}
 }
 
@@ -49,16 +50,24 @@ function buttons(){
 		button.innerHTML = i+1;
 		divPage.appendChild(button);
 	}
-}
-divPage.addEventListener('click', event) =>{
-	
+};
 
+/*event listener will respong to clicks on elements with indexStart only, then will loop from
+  indexStart forword 10 steps (inclusive) and set display to true.*/
+document.getElementsByTagName('body')[0].addEventListener('click', (event) =>{
+
+	//if the target has idexstart attrbute then...
 	if (event.target.hasAttribute('indexStart')){
-	const button = event.target;
-		for (let i=button.indexStart;i<button.indexStart;i++){
-			studentListDOM[i].display='true';
+
+	let button = event.target;//set the button variable to target
+	const buttonIndex = button.getAttribute('indexstart');//set button index to the index value
+
+	hideAll();//hides all the student elements
+
+		for (let i=buttonIndex;i<buttonIndex+9;i+9){//then eneble the intendet students
+			studentListDOM.item(i).style.display='list-item';
 		}
 	}
-}
+})
 hideAndAppened();
 	
