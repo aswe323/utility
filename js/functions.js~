@@ -22,7 +22,7 @@ const studentEmail = (student) => student.querySelector("div span").innerText;//
 const studentName = (student) => student.querySelector("div h3").innerText;//acces to studentListDOM name text
 
 
-
+//hide every element in the student-list selector studentListDOM;
 function hideAll (){
 
 	//adding a style to hide all the students from the html
@@ -32,15 +32,7 @@ function hideAll (){
 	}
 }
 
-
-function hideAndAppened() {
-
-	hideAll();
-	buttons();
-	
-
-
-};
+//creating buttons in the range of studentListDOM/10 then adding another for any leftovers, for every button an appropriate indexstart attribute is set
 function buttons(){
 
 	for (let i=0;i<=studentListDOM.length/10;i++){
@@ -60,13 +52,22 @@ document.getElementsByTagName('body')[0].addEventListener('click', (event) =>{
 	if (event.target.hasAttribute('indexStart')){
 
 	let button = event.target;//set the button variable to target
-	let buttonIndex = button.getAttribute('indexstart');//set button index to the index value
+	const buttonIndex = button.getAttribute('indexstart');//set button index to the index value
 
 	hideAll();//hides all the student elements
-	for (let b=buttonIndex;b<buttonIndex+=10;b++){
+	for (let b=buttonIndex;b<(parseInt(buttonIndex)+10);b++){
 		studentListDOM.item(b).style.display='list-item';
 		}
 	}
 })
+//calling all function
+function hideAndAppened() {
+
+	hideAll();
+	buttons();
+	
+
+
+};
 hideAndAppened();
 	
