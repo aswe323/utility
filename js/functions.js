@@ -1,6 +1,6 @@
 /*
  complete:make an exception in the creation of buttons for when the number of items in studentListDOM is not returning any leftovers when divided by 10
- TODO:look for a way to make the errors disapear. not even kidding.
+ complete:look for a way to make the errors disapear. not even kidding.
  complete:eliminate any uneccesery single letter variables and make more clear once insted of them
  complete:make the button event listener closer to the butotn (idealy in the buttons themself)
 */ //access to needed elements of the page
@@ -53,6 +53,7 @@ for (let buttonInstence=0;buttonInstence<buttonElements.length;buttonInstence++)
 
 		//if event index is not smaller then the starting index value plus 10. continue enabling student LI
 		for (let eventIndex=buttonIndex; eventIndex<(parseInt(buttonIndex)+10);eventIndex++){
+			if (studentListDOM.item(eventIndex) === null){break};
 			studentListDOM.item(eventIndex).style.display='list-item';
 			}
 	
