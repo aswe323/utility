@@ -46,7 +46,7 @@ function buttons(){
 	for (let i=0;i<=studentListDOM.length/10;i++){
 		let button = document.createElement("button");
 		console.log(button);
-		button.setAttribute("indexStart", i);
+		button.setAttribute("indexStart", i*10);
 		button.innerHTML = i+1;
 		divPage.appendChild(button);
 	}
@@ -60,16 +60,11 @@ document.getElementsByTagName('body')[0].addEventListener('click', (event) =>{
 	if (event.target.hasAttribute('indexStart')){
 
 	let button = event.target;//set the button variable to target
-	const buttonIndex = button.getAttribute('indexstart');//set button index to the index value
+	let buttonIndex = button.getAttribute('indexstart');//set button index to the index value
 
 	hideAll();//hides all the student elements
-
-		for (let i=buttonIndex;i<buttonIndex+9;i+9){//then eneble the intendet students
-			if (studentListDOM.item(i) == null){
-				break
-			}else{
-			studentListDOM.item(i).style.display='list-item';
-			}
+	for (let b=buttonIndex;b<buttonIndex+=10;b++){
+		studentListDOM.item(b).style.display='list-item';
 		}
 	}
 })
