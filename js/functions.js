@@ -1,7 +1,6 @@
 /*
  TODO:make an exception in the creation of buttons for when the number of items in studentListDOM is not returning any leftovers when divided by 10
  TODO:look for a way to make the errors disapear. not even kidding.
- TODO:display the first page when the page has fully loaded.
  TODO:eliminate any uneccesery single letter variables and make more clear once insted of them
  TODO:make the button event listener closer to the butotn (idealy in the buttons themself)
 */ //access to needed elements of the page
@@ -25,7 +24,7 @@ function hideAll (){
 //creating buttons in the range of studentListDOM/10 then adding another for any leftovers, for every button an appropriate indexstart attribute is set
 function buttons(){
 
-	for (let enumeric=0;enumeric<=studentListDOM.length/10;enumeric++){
+	for (let index=0;index<=studentListDOM.length/10;enumeric++){
 		let button = document.createElement("button");
 		console.log(button);
 		button.setAttribute("indexStart", enumeric*10);
