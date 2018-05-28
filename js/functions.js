@@ -15,7 +15,7 @@ step 4
 search based on email
 */
 //access to needed elements of the page
-const divPage = document.querySelector('.page');//access to div tag with .class elements
+const divPage = document.querySelector('.page');//acces to first tag with page class in it. 
 const studentListDOM = document.querySelector(".student-list").children; // acces to list of li containing students
 //accessing the email and name of students
 const studentEmail = (student) => student.querySelector("div span").innerText;//access a studentListDOM email text
