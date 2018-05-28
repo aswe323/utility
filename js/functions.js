@@ -55,6 +55,10 @@ function hideAndAppened() {
 
 	hideAll();
 	buttons();
+	for (let i=0;i<10;i++){
+		console.log('i nde it');
+		studentListDOM.item(i).style.display ="list-item";
+	}
 };
 hideAndAppened();
 	
