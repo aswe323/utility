@@ -1,9 +1,17 @@
 /*
- complete:make an exception in the creation of buttons for when the number of items in studentListDOM is not returning any leftovers when divided by 10
- complete:look for a way to make the errors disapear. not even kidding.
- complete:eliminate any uneccesery single letter variables and make more clear once insted of them
- complete:make the button event listener closer to the butotn (idealy in the buttons themself)
-*/ //access to needed elements of the page
+ KNOWN BUGS:
+
+ TO-ADD:
+
+ TO-REFACTOR:
+ 
+*/
+
+/*----------------------------------------------------------
+ *		  MINIMUM VIABLE PRODUCT                   *
+-----------------------------------------------------------*/
+
+//access to needed elements of the page
 const divPage = document.querySelector('.page');//acces to first tag with page class in it. 
 const studentListDOM = document.querySelector(".student-list").children; // acces to list of li containing students
 //accessing the email and name of students
