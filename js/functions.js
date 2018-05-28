@@ -3,7 +3,7 @@
  TODO:look for a way to make the errors disapear. not even kidding.
  TODO:display the first page when the page has fully loaded.
  TODO:eliminate any uneccesery single letter variables and make more clear once insted of them
- TODO:use the same event listener for search button
+ TODO:decode whetherto use same event listener for search button
 */
 //access to needed elements of the page
 const divPage = document.querySelector('.page');//acces to first tag with page class in it. 
