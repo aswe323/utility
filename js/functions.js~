@@ -1,9 +1,18 @@
 /*
- TODO:make an exception in the creation of buttons for when the number of items in studentListDOM is not returning any leftovers when divided by 10
- TODO:look for a way to make the errors disapear. not even kidding.
- TODO:display the first page when the page has fully loaded.
- TODO:eliminate any uneccesery single letter variables and make more clear once insted of them
- TODO:use the same event listener for search button
+ step 1 
+
+access list of students with DOM
+
+step 2
+creat function for showing and hiding pages.
+ 
+step 3 
+
+append page links function
+
+step 4 
+
+search based on email
 */
 //access to needed elements of the page
 const divPage = document.querySelector('.page');//acces to first tag with page class in it. 
