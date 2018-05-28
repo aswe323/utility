@@ -3,9 +3,8 @@
  TODO:look for a way to make the errors disapear. not even kidding.
  TODO:display the first page when the page has fully loaded.
  TODO:eliminate any uneccesery single letter variables and make more clear once insted of them
- TODO:decode whetherto use same event listener for search button
-*/
-//access to needed elements of the page
+ TODO:make the button event listener closer to the butotn (idealy in the buttons themself)
+*/ //access to needed elements of the page
 const divPage = document.querySelector('.page');//acces to first tag with page class in it. 
 const studentListDOM = document.querySelector(".student-list").children; // acces to list of li containing students
 //accessing the email and name of students
@@ -26,11 +25,11 @@ function hideAll (){
 //creating buttons in the range of studentListDOM/10 then adding another for any leftovers, for every button an appropriate indexstart attribute is set
 function buttons(){
 
-	for (let i=0;i<=studentListDOM.length/10;i++){
+	for (let enumeric=0;enumeric<=studentListDOM.length/10;enumeric++){
 		let button = document.createElement("button");
 		console.log(button);
-		button.setAttribute("indexStart", i*10);
-		button.innerHTML = i+1;
+		button.setAttribute("indexStart", enumeric*10);
+		button.innerHTML = enumeric+1;
 		divPage.appendChild(button);
 	}
 };
@@ -46,8 +45,8 @@ document.getElementsByTagName('body')[0].addEventListener('click', (event) =>{
 	const buttonIndex = button.getAttribute('indexstart');//set button index to the index value
 
 	hideAll();//hides all the student elements
-	for (let b=buttonIndex;b<(parseInt(buttonIndex)+10);b++){
-		studentListDOM.item(b).style.display='list-item';
+	for (let eventIndex=buttonIndex; eventIndex<(parseInt(buttonIndex)+10);eventIndex++){
+		studentListDOM.item(eventIndex).style.display='list-item';
 		}
 	}
 })
