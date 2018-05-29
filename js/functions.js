@@ -26,7 +26,18 @@ const studentListDOM = document.querySelector(".student-list").children; // acce
 const studentEmail = (student) => student.querySelector("div span").innerText;//access a studentListDOM email text
 const studentName = (student) => student.querySelector("div h3").innerText;//acces to studentListDOM name text
 
-
+//make a new elememnt DIV and adding an ul for the pages to held at
+function createDiv (){
+	const newDiv = document.createElement('div');
+	newDiv.setAttribute('class', 'pages');
+	const newUl = document.createElement('ul');
+	newUl.setAttribute("class", "pagination");
+	divPage.appendChild(newDiv);
+	const pageDiv = document.querySelector('.pages');	
+	pageDiv.appendChild(newUl);
+	pagesUl = document.querySelector('.pages ul');
+}
+createDiv();
 //hide every element in the student-list selector studentListDOM;
 function hideAll (){
 
@@ -42,12 +53,14 @@ function buttons(){
 	for (let index=0;index<=studentListDOM.length/10;index++){
 		
 		if (studentListDOM.item(index+1) === null){break};
-		let button = document.createElement("button");
+		let button = document.createElement("a");
 		console.log(button);
 		button.setAttribute("data-indexstart", index*10);
-		button.setAttribute("display", "inline");
+		button.setAttribute('href', "#");
 		button.innerHTML = index+1;
-		divPage.appendChild(button);
+		let newLi = document.createElement('li')
+		newLi.innerHTML = button
+		pagesUl.appendChild(newLi);//TODO: CHANGE: make appened at an UL nested within the a new div element, use li.
 	}
 };
 //calling buttons before accesing them, so to use them in the creating of the event listeners.
