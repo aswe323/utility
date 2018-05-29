@@ -2,9 +2,19 @@
  KNOWN BUGS:
 
  TO-ADD:
-
+ TODO:add search elements. 
+ TODO:add search functionality
+ TODO:add calling of page when student hit succsefuly searched.
+ TODO:make an alert for the suer when he enters the wrong input in the elements and press search
  TO-REFACTOR:
- 
+ TODO:make the code more like the example snippet.
+ 	TODO:make buttons inside a div element with li for each button.
+	TODO:the core functionality can remain the same.(?)
+	TODO:make a function that will creat the li. and call her witht he button funcition
+
+ TESTS:
+ TODO:test script with exact number of students. (10 for example)
+ TODO:test script with less then 10 studens.
 */
 
 /*----------------------------------------------------------
@@ -43,12 +53,16 @@ function buttons(){
 //calling buttons before accesing them, so to use them in the creating of the event listeners.
 buttons();
 const buttonElements = document.querySelectorAll("[data-indexstart]");
+//looping throw all buttons and adding event listeners to them.
 for (let buttonInstence=0;buttonInstence<buttonElements.length;buttonInstence++){
-/*event listener will respong to clicks on elements with indexStart only, then will loop from
-  indexStart forword 10 steps (inclusive) and set display to true.*/
+
+//the event will make the approprirate students apper and hide all outher students.
 	buttonElements[buttonInstence].addEventListener('click', (event) =>{
+
 		let button = event.target;//set the button variable to target
+
 		const buttonIndex = button.getAttribute('data-indexstart');//set button index to the index value
+
 		hideAll();//hides all the student elements
 		
 		//if event index is not smaller then the starting index value plus 10. continue enabling student LI
