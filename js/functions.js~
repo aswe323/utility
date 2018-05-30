@@ -92,8 +92,9 @@ for (let buttonInstence=0;buttonInstence<buttonElements.length;buttonInstence++)
 	})
 }
 //a loop that will take the button that it was called by, will remove every 'active' class then add a active class to the button that it wa called by
-function makeActive(){//UNTESTED
+function makeActive(){//UNTESTED NEEEDS WORK <------------------------------------------------
 	const buttonsList = document.querySelectorAll('[href]');
+	console.log(buttonsList);
 	for (let i=0;i<buttonsList;i++){
 	buttonsList.item(i).removeAttribute('class');
 	}
