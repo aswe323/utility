@@ -10,7 +10,6 @@
 		2.emails held in the 
 			.student-details span
 		
-	TODO: if a match was found ???
  TODO:add calling of page when student hit succsefuly searched.
  TODO:make an alert for the suer when he enters the wrong input in the elements and press search
  TO-REFACTOR:
