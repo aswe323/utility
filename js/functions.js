@@ -7,9 +7,8 @@
  TODO:add calling of page when student hit succsefuly searched.
  TODO:make an alert for the suer when he enters the wrong input in the elements and press search
  TO-REFACTOR:
-	TODO:make the code more like the example snippet.
+	complete:make the code more like the example snippet.
  	conplete:make buttons inside a div element with li for each button.
-	TODO:the core functionality can remain the same.(?)
 
  TESTS:
  TODO:test script with exact number of students. (10 for example)
@@ -54,20 +53,28 @@ function hideAll (){
 
 	}
 }
-//creating buttons in the range of studentListDOM/10 then adding another for any leftovers, for every button an appropriate indexstart attribute is set
+//creating buttons in the range of studentListDOM/10 then adding another for any leftovers. if the value of the next index is null. will stop.
 function buttons(){
 
 	for (let index=0;index<=studentListDOM.length/10;index++){
 		
-		if (studentListDOM.item(index+1) === null){break};//UNTESTED
+
+		//creating an <a> element
 		let button = document.createElement("a");
 		console.log(button);
+		//adding an href attr with the vlaue of $
 		button.setAttribute('href', "#");
+		//making the inner html of the button = to index. TODO: make it 1 for the first button without interapting the event listener creation
 		button.innerHTML = index;
+		//creating a new <li> element 
 		let newLi = document.createElement('li')
+		//adding the new <a> to the new <li> element
 		newLi.appendChild(button);
-		pagesUl.appendChild(newLi);//TODO: CHANGE: make appened at an UL nested within the a new div element, use li.
+		//adding the new <li> to the div with the class of pagination
+		pagesUl.appendChild(newLi);
+		if (studentListDOM.item(index+1) === null){break};//UNTESTED
 	}
+
 };
 //calling buttons before accesing them, so to use them in the creating of the event listeners.
 buttons();
@@ -82,6 +89,7 @@ for (let buttonInstence=0;buttonInstence<buttonElements.length;buttonInstence++)
 		hideAll();//hides all the student elements
 		//add a active atr so the css will do its magic :)
 		makeActive();
+		//will add a class attribue with the value of active.
 		button.setAttribute('class','active');
 		let startCount = button.innerHTML;
 		//if event index is not smaller then the starting index value plus 10. continue enabling student LI
@@ -91,12 +99,11 @@ for (let buttonInstence=0;buttonInstence<buttonElements.length;buttonInstence++)
 			}
 	})
 }
-//a loop that will take the button that it was called by, will remove every 'active' class then add a active class to the button that it wa called by
-function makeActive(){//UNTESTED NEEEDS WORK <------------------------------------------------
-	const buttonsList = document.querySelectorAll('[href=#]');
-	console.log(buttonsList);
-	console.log(buttonsList); for (let i=0;i<buttonsList;i++){
-	buttonsList.item(i).removeAttribute('class');
+//will remove all active classes from the buttons
+function makeActive(){
+	const buttonsList = document.querySelectorAll('[href="#"]');
+	for (let i=0;i<buttonsList.length;i++){
+		buttonsList.item(i).removeAttribute('class');
 	}
 }
 //initial load of page, hiding every student on the page then showing the first 10
