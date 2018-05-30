@@ -7,7 +7,7 @@
  TODO:add calling of page when student hit succsefuly searched.
  TODO:make an alert for the suer when he enters the wrong input in the elements and press search
  TO-REFACTOR:
- TODO:make the code more like the example snippet.
+	TODO:make the code more like the example snippet.
  	conplete:make buttons inside a div element with li for each button.
 	TODO:the core functionality can remain the same.(?)
 
@@ -59,7 +59,7 @@ function buttons(){
 
 	for (let index=0;index<=studentListDOM.length/10;index++){
 		
-		if (studentListDOM.item(index+1) === null){break};
+		if (studentListDOM.item(index+1) === null){break};//UNTESTED
 		let button = document.createElement("a");
 		console.log(button);
 		button.setAttribute('href', "#");
@@ -80,6 +80,9 @@ for (let buttonInstence=0;buttonInstence<buttonElements.length;buttonInstence++)
 
 		let button = event.target;//set the button variable to target
 		hideAll();//hides all the student elements
+		//add a active atr so the css will do its magic :)
+		makeActive();
+		button.setAttribute('class','active');
 		let startCount = button.innerHTML;
 		//if event index is not smaller then the starting index value plus 10. continue enabling student LI
 		for (let eventIndex=(parseInt(startCount))*10; eventIndex<((parseInt(startCount)+1)*10);eventIndex++){
@@ -87,6 +90,13 @@ for (let buttonInstence=0;buttonInstence<buttonElements.length;buttonInstence++)
 			studentListDOM.item(eventIndex).style.display='list-item';
 			}
 	})
+}
+//a loop that will take the button that it was called by, will remove every 'active' class then add a active class to the button that it wa called by
+function makeActive(){//UNTESTED NEEEDS WORK <------------------------------------------------
+	const buttonsList = document.querySelectorAll('[href]');
+	for (let i=0;i<buttonsList;i++){
+	buttonsList.item(i).removeAttribute('class');
+	}
 }
 //initial load of page, hiding every student on the page then showing the first 10
 function hideAndAppened() {
