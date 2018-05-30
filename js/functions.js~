@@ -70,7 +70,8 @@ function buttons(){
 		let newLi = document.createElement('li')
 		//adding the new <a> to the new <li> element
 		newLi.appendChild(button);
-		pagesUl.appendChild(newLi);//TODO: CHANGE: make appened at an UL nested within the a new div element, use li.
+		//adding the new <li> to the div with the class of pagination
+		pagesUl.appendChild(newLi);
 		if (studentListDOM.item(index+1) === null){break};//UNTESTED
 	}
 

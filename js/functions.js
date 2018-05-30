@@ -65,7 +65,7 @@ function buttons(){
 		//adding an href attr with the vlaue of $
 		button.setAttribute('href', "#");
 		//making the inner html of the button = to index. TODO: make it 1 for the first button without interapting the event listener creation
-		button.innerHTML = index;
+		button.innerHTML = index + 1;
 		//creating a new <li> element 
 		let newLi = document.createElement('li')
 		//adding the new <a> to the new <li> element
@@ -87,11 +87,10 @@ for (let buttonInstence=0;buttonInstence<buttonElements.length;buttonInstence++)
 
 		let button = event.target;//set the button variable to target
 		hideAll();//hides all the student elements
-		//add a active atr so the css will do its magic :)
 		makeActive();
 		//will add a class attribue with the value of active.
 		button.setAttribute('class','active');
-		let startCount = button.innerHTML;
+		let startCount = button.innerHTML -1;
 		//if event index is not smaller then the starting index value plus 10. continue enabling student LI
 		for (let eventIndex=(parseInt(startCount))*10; eventIndex<((parseInt(startCount)+1)*10);eventIndex++){
 			if (studentListDOM.item(eventIndex) === null){break};
