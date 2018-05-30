@@ -10,7 +10,13 @@
 		2.emails held in the 
 			.student-details span
 		
-	TODO: if a match was found ???
+	TODO: if a match was found,hideAll(), then get the match index in the HTML collection then:
+		if the reminder of the index % 10 is 0
+			check if its the first item in the HTML collection (first student) if it is. enable forst 10 students
+			else start enabling students display element in tange on index +9
+		if the reminder of index % 10 is not 0
+			subtract the reminder from the index value.
+			then start enabling students in range of index +9
  TODO:add calling of page when student hit succsefuly searched.
  TODO:make an alert for the suer when he enters the wrong input in the elements and press search
  TO-REFACTOR:
@@ -28,8 +34,8 @@
 //accesing DOM elements
 const divPage = document.querySelector('.page');//acces to first tag with page class in it. 
 const studentListDOM = document.querySelector(".student-list").children; // acces to list of li containing students
-const studentEmail = (student) => student.querySelector("div span").innerText;//access a studentListDOM email text
-const studentName = (student) => student.querySelector("div h3").innerText;//acces to studentListDOM name text
+const studentEmail = document.querySelector("div span");//access a studentListDOM email text
+const studentName =  document.querySelectorAll("div h3");//acces to studentListDOM name text
 
 //adding a all the elements the searched  functionality will need.
 function addSearchElements(){
@@ -53,6 +59,20 @@ function addSearchElements(){
 }
 //adding the search elements to the page.
 addSearchElements();
+
+//search functions
+//adding event listener to button next to input field
+const searchButtonAccess= document.querySelector('.student-search button').addEventListener('click', (event) =>{
+	//access to the input field
+	const searchTerm = document.querySelector('.student-search input').value;
+	//getting length of htmlcollecion
+	const length = studentListDOM.length;
+	//access to students names
+	const names = document.querySelectorAll('.student-details h3');
+	//trying to access the innerHTML of all the h3 tags
+	console.log(names.innerHTML);//<-------------------------------------------------------------dosnt work
+})
+console.log(searchButtonAccess);
 
 //make a new elememnt DIV and adding an ul for the pages to held at
 function createDiv (){
