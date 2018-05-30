@@ -11,8 +11,8 @@
  	conplete:make buttons inside a div element with li for each button.
 
  TESTS:
- complete:test script with exact number of students. (10 for example)
- complete:test script with less then 10 studens.
+ TODO:test script with exact number of students. (10 for example)
+ TODO:test script with less then 10 studens.
 */
 
 /*----------------------------------------------------------
