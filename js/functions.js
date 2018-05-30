@@ -82,8 +82,7 @@ for (let buttonInstence=0;buttonInstence<buttonElements.length;buttonInstence++)
 		hideAll();//hides all the student elements
 		let startCount = button.innerHTML;
 		//if event index is not smaller then the starting index value plus 10. continue enabling student LI
-		for (let eventIndex=((parseInt(startCount)+1)*10); eventIndex<((parseInt(startCount)+1)*10);eventIndex++){
-			console.log((parseInt(startCount)+1)*10);
+		for (let eventIndex=(parseInt(startCount))*10; eventIndex<((parseInt(startCount)+1)*10);eventIndex++){
 			if (studentListDOM.item(eventIndex) === null){break};
 			studentListDOM.item(eventIndex).style.display='list-item';
 			}
