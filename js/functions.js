@@ -8,9 +8,8 @@
  TODO:make an alert for the suer when he enters the wrong input in the elements and press search
  TO-REFACTOR:
  TODO:make the code more like the example snippet.
- 	TODO:make buttons inside a div element with li for each button.
+ 	conplete:make buttons inside a div element with li for each button.
 	TODO:the core functionality can remain the same.(?)
-	TODO:make a function that will creat the li. and call her witht he button funcition
 
  TESTS:
  TODO:test script with exact number of students. (10 for example)
@@ -28,13 +27,21 @@ const studentName = (student) => student.querySelector("div h3").innerText;//acc
 
 //make a new elememnt DIV and adding an ul for the pages to held at
 function createDiv (){
+	//creating a new div
 	const newDiv = document.createElement('div');
+	//setting its class to pages
 	newDiv.setAttribute('class', 'pages');
+	//creaing new ul elemeny
 	const newUl = document.createElement('ul');
+	//ul element has class of pagination
 	newUl.setAttribute("class", "pagination");
+	//appening the ul to the new div element
 	divPage.appendChild(newDiv);
+	//selecting all the div element
 	const pageDiv = document.querySelector('.pages');	
+	//appending the ul to the div.
 	pageDiv.appendChild(newUl);
+	//making pagesUl a global access for the ul element
 	pagesUl = document.querySelector('.pages ul');
 }
 createDiv();
@@ -55,31 +62,28 @@ function buttons(){
 		if (studentListDOM.item(index+1) === null){break};
 		let button = document.createElement("a");
 		console.log(button);
-		button.setAttribute("data-indexstart", index*10);
 		button.setAttribute('href', "#");
-		button.innerHTML = index+1;
+		button.innerHTML = index;
 		let newLi = document.createElement('li')
-		newLi.innerHTML = button
+		newLi.appendChild(button);
 		pagesUl.appendChild(newLi);//TODO: CHANGE: make appened at an UL nested within the a new div element, use li.
 	}
 };
 //calling buttons before accesing them, so to use them in the creating of the event listeners.
 buttons();
-const buttonElements = document.querySelectorAll("[data-indexstart]");
+const buttonElements = document.querySelectorAll(".pagination li");
 //looping throw all buttons and adding event listeners to them.
 for (let buttonInstence=0;buttonInstence<buttonElements.length;buttonInstence++){
 
 //the event will make the approprirate students apper and hide all outher students.
-	buttonElements[buttonInstence].addEventListener('click', (event) =>{
+	buttonElements.item(buttonInstence).addEventListener('click', (event) =>{
 
 		let button = event.target;//set the button variable to target
-
-		const buttonIndex = button.getAttribute('data-indexstart');//set button index to the index value
-
 		hideAll();//hides all the student elements
-		
+		let startCount = button.innerHTML;
 		//if event index is not smaller then the starting index value plus 10. continue enabling student LI
-		for (let eventIndex=buttonIndex; eventIndex<(parseInt(buttonIndex)+10);eventIndex++){
+		for (let eventIndex=((parseInt(startCount)+1)*10); eventIndex<((parseInt(startCount)+1)*10);eventIndex++){
+			console.log((parseInt(startCount)+1)*10);
 			if (studentListDOM.item(eventIndex) === null){break};
 			studentListDOM.item(eventIndex).style.display='list-item';
 			}
