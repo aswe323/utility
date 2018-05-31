@@ -60,6 +60,18 @@ function addSearchElements(){
 //adding the search elements to the page.
 addSearchElements();
 
+function mockOfArrrey(){
+
+	//access to students names tages
+	const names = document.querySelectorAll('.student-details h3');
+	var mockArrey = [];
+	//create a mock off of the arrey studentListDOM. with the names of all thee students. in the same length
+	for (let i=0; i<names.length;i++){
+		mockArrey.push(names[i].innerHTML);
+	}
+	return mockArrey;
+}
+mockOfArrrey();
 //search functions
 //adding event listener to button next to input field
 const searchButtonAccess= document.querySelector('.student-search button').addEventListener('click', (event) =>{
@@ -67,9 +79,10 @@ const searchButtonAccess= document.querySelector('.student-search button').addEv
 	const searchTerm = document.querySelector('.student-search input').value;
 	//getting length of htmlcollecion
 	const length = studentListDOM.length;
-	//access to students names
-	const names = document.querySelectorAll('.student-details h3');
-	//trying to access the innerHTML of all the h3 tags
+
+
+
+	
 	console.log(names.innerHTML);//<-------------------------------------------------------------dosnt work
 })
 console.log(searchButtonAccess);
