@@ -60,31 +60,53 @@ function addSearchElements(){
 //adding the search elements to the page.
 addSearchElements();
 
+//makig an arrey for the student names in the same length of the studentListDOM.
 function mockOfArrrey(){
 
 	//access to students names tages
 	const names = document.querySelectorAll('.student-details h3');
-	var mockArrey = [];
+	mockArrey = [];
 	//create a mock off of the arrey studentListDOM. with the names of all thee students. in the same length
 	for (let i=0; i<names.length;i++){
 		mockArrey.push(names[i].innerHTML);
 	}
-	return mockArrey;
 }
 mockOfArrrey();
+
 //search functions
 //adding event listener to button next to input field
 const searchButtonAccess= document.querySelector('.student-search button').addEventListener('click', (event) =>{
-	//access to the input field
+	//access to the user input 
 	const searchTerm = document.querySelector('.student-search input').value;
 	//getting length of htmlcollecion
 	const length = studentListDOM.length;
+	//compare input with mockArrey	
+	const searchResualts= mockArrey.findIndex(function (element){
+		return element== searchTerm;
+	})	
+	//if the index is smaller then 10. enable first 10 students
+	if (searchResualts <= 10 && searchResualts != -1){
+	hideAll();
+	for (let i=0;i<10;i++){
+		console.log('search below 10');
 
+		if (studentListDOM.item(i) ==null){return};//if end of students then stop trying to display them
+		studentListDOM.item(i).style.display ="list-item";
 
+	}
+	}else if(searchResualts > 10){
+		console.log('search above 10');
+		hideAll();
+		extraToRemove= searchResualts%10;
+		firstStudent = searchResualts - extraToRemove;	
+	for (let i=firstStudent;i<firstStudent+9;i++){
+		if (studentListDOM.item(i) ==null){return};//if end of students then stop trying to display them
+		studentListDOM.item(i).style.display ="list-item";
+	}
+	}else{alert('this are not the students your lookin for')};
 
-	
-	console.log(names.innerHTML);//<-------------------------------------------------------------dosnt work
 })
+
 console.log(searchButtonAccess);
 
 //make a new elememnt DIV and adding an ul for the pages to held at
@@ -128,7 +150,7 @@ function buttons(){
 		console.log(button);
 		//adding an href attr with the vlaue of $
 		button.setAttribute('href', "#");
-		//making the inner html of the button = to index. TODO: make it 1 for the first button without interapting the event listener creation
+		//making the inner html of the button = to index. ODO: make it 1 for the first button without interapting the event listener creation
 		button.innerHTML = index + 1;
 		//creating a new <li> element 
 		let newLi = document.createElement('li')
