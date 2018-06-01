@@ -2,23 +2,18 @@
  KNOWN BUGS:
 
  TO-ADD:
- TODO:make a function that will take arguments and will show students in the range specified
+ calnceled:make a function that will take arguments and will show students in the range specified
  complete:add search elements. 
- TODO:add search functionality
- 	TODO:the given input should be searched across 2 diffrent arreys after being lowercased
+ complete:add search functionality
+ 	complete:the given input should be searched across 2 diffrent arreys after being lowercased
 		1.names of students held in 					--->should be lowercased for the search<---
 			.student-details h2.innerHTML
 		2.emails held in the 
 			.student-details span
 		
-	TODO: if a match was found,hideAll(), then get the match index in the HTML collection then:
-		if the reminder of the index % 10 is 0
-			check if its the first item in the HTML collection (first student) if it is. enable forst 10 students
-			else start enabling students display element in tange on index +9
-		if the reminder of index % 10 is not 0
-			subtract the reminder from the index value.
-			then start enabling students in range of index +9
- TODO:add calling of page when student hit succsefuly searched.
+	complete: if a match was found,hideAll(), then get the match index in the HTML collection then:
+ 
+ calnceled:add calling of page when student hit succsefuly searched.
  TODO:make an alert for the suer when he enters the wrong input in the elements and press search
  TO-REFACTOR:
 	complete:make the code more like the example snippet.
@@ -30,7 +25,7 @@
 */
 
 /*----------------------------------------------------------
- *		  MINIMUM VIABLE PRODUCT                   *
+ *		      PAGINATION V3			   *
 -----------------------------------------------------------*/
 //accesing DOM elements
 const divPage = document.querySelector('.page');//acces to first tag with page class in it. 
@@ -78,13 +73,12 @@ function mockOfArreyEmails(){
 	//access to students emails tages
 	const emails = document.querySelectorAll('.student-details span');
 	//creating an arrey of email addresss
-	mockOfArreyEmail ={}
-	for (let i=0; i<mockOfArreyEmail.length;i++){
+	mockOfArreyEmail = [];
+	for (let i=0; i<emails.length;i++){
 		mockOfArreyEmail.push(emails[i].innerHTML);//<<<----- dosnt work. dosnt make an arrey of emails.
 	}	
 }
 mockOfArreyEmails();
-console.log(mockOfArreyEmail);
 //search functions
 //adding event listener to button next to input field
 const searchButtonAccess= document.querySelector('.student-search button').addEventListener('click', (event) =>{
@@ -93,7 +87,8 @@ const searchButtonAccess= document.querySelector('.student-search button').addEv
 	const searchTerm = document.querySelector('.student-search input').value;
 	//getting length of htmlcollecion
 	const length = studentListDOM.length;
-	//making a arrey for the inde values of found matches
+	//found is wether or not we found a match	
+	found = false;
 	//looping of all of studentlistDOM length
 	for (let i=0;i<length;i++){
 		//indexSearch adds the index-value of found matches to the foundNames arrey.
@@ -102,6 +97,7 @@ const searchButtonAccess= document.querySelector('.student-search button').addEv
 			//check mockOfArreyEmail for matches with nested find index. then break(return) from the click event			
 				const emailSearch = mockOfArreyEmail.findIndex(function (element, index){
 				if (element.includes(searchTerm)){
+					found = true;
 					studentListDOM[index].style.display = 'inline';//showing student thatw are found in the name search
 				}
 				}
@@ -113,11 +109,12 @@ const searchButtonAccess= document.querySelector('.student-search button').addEv
 		}
 		)	
 	}
-	if (found === false){
+	if (found == false){
 		hideAll()
 		const failed = document.createElement('h1');
-		failed.innerHTML = 'this is not the students you are looking for.. or maybe you just entered the wrong name :P';
-		divPage.appendChild(failed);	
+		failed.innerHTML = 'this are not the students you are looking for.. or maybe you just entered the wrong name :P';
+		document.querySelector('.page-header').appendChild(failed);	
+	
 	}
 });
 
