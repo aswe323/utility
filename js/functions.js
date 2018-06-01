@@ -80,32 +80,21 @@ const searchButtonAccess= document.querySelector('.student-search button').addEv
 	const searchTerm = document.querySelector('.student-search input').value;
 	//getting length of htmlcollecion
 	const length = studentListDOM.length;
-	//compare input with mockArrey	
-	const searchResualts= mockArrey.findIndex(function (element){
-		return element== searchTerm;
-	})	
-	//if the index is smaller then 10. enable first 10 students
-	if (searchResualts <= 10 && searchResualts != -1){
-	hideAll();
-	for (let i=0;i<10;i++){
-		console.log('search below 10');
-
-		if (studentListDOM.item(i) ==null){return};//if end of students then stop trying to display them
-		studentListDOM.item(i).style.display ="list-item";
-
+	//making a arrey for the inde values of found matches
+	let foundNames = [];
+	//looping of all of studentlistDOM length
+	for (let i=0;i<length;i++){
+		//indexSearch adds the index value of found matches to the foundNames arrey.
+	const indexSearch= mockArrey.findIndex(function (element){
+		if (element.includes(searchTerm)){
+			console.log('i found :' + element);
+			i=element;
+			foundNames.push(element);	
+		}
 	}
-	}else if(searchResualts > 10){
-		console.log('search above 10');
-		hideAll();
-		extraToRemove= searchResualts%10;
-		firstStudent = searchResualts - extraToRemove;	
-	for (let i=firstStudent;i<firstStudent+9;i++){
-		if (studentListDOM.item(i) ==null){return};//if end of students then stop trying to display them
-		studentListDOM.item(i).style.display ="list-item";
+	)	
 	}
-	}else{alert('this are not the students your lookin for')};
-
-})
+});
 
 console.log(searchButtonAccess);
 
