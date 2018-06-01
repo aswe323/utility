@@ -2,6 +2,7 @@
  KNOWN BUGS:
 
  TO-ADD:
+ TODO:make a function that will take arguments and will show students in the range specified
  complete:add search elements. 
  TODO:add search functionality
  	TODO:the given input should be searched across 2 diffrent arreys after being lowercased
@@ -84,15 +85,21 @@ const searchButtonAccess= document.querySelector('.student-search button').addEv
 	let foundNames = [];
 	//looping of all of studentlistDOM length
 	for (let i=0;i<length;i++){
-		//indexSearch adds the index value of found matches to the foundNames arrey.
-	const indexSearch= mockArrey.findIndex(function (element){
-		if (element.includes(searchTerm)){
-			console.log('i found :' + element);
-			i=element;
-			foundNames.push(element);	
+		console.log(i);
+		//indexSearch adds the index-value of found matches to the foundNames arrey.
+		const indexSearch= mockArrey.findIndex(function (element, index){
+			if (element.includes(searchTerm)){
+				hideAll();
+				console.log(index);// index dosnt return what i tought is returning
+				foundNames.push(index);	
+			}
 		}
+		)	
 	}
-	)	
+	
+
+	for (let i=0;i<foundNames.length;i++){
+		studentListDOM[foundNames[i]].style.display = 'inline';//showing student thatw are found in the name search
 	}
 });
 
