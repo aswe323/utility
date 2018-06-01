@@ -77,33 +77,33 @@ mockOfArrrey();
 //search functions
 //adding event listener to button next to input field
 const searchButtonAccess= document.querySelector('.student-search button').addEventListener('click', (event) =>{
+	hideAll();
 	//access to the user input 
 	const searchTerm = document.querySelector('.student-search input').value;
 	//getting length of htmlcollecion
 	const length = studentListDOM.length;
 	//making a arrey for the inde values of found matches
-	let foundNames = [];
 	//looping of all of studentlistDOM length
 	for (let i=0;i<length;i++){
-		console.log(i);
 		//indexSearch adds the index-value of found matches to the foundNames arrey.
 		const indexSearch= mockArrey.findIndex(function (element, index){
 			if (element.includes(searchTerm)){
-				hideAll();
-				console.log(index);
-				foundNames.push(index);	
+				found = true;
+
+				studentListDOM[index].style.display = 'inline';//showing student thatw are found in the name search
 			}
 		}
 		)	
 	}
-	
-
-	for (let i=0;i<foundNames.length;i++){
-		studentListDOM[foundNames[i]].style.display = 'inline';//showing student thatw are found in the name search
+	if (found === false){
+		hideAll()
+		const failed = document.createElement('h1');
+		failed.innerHTML = 'this is not the students you are looking for.. or maybe you just entered the wrong name :P';
+		divPage.appendChild(failed);	
 	}
 });
 
-console.log(searchButtonAccess);
+//console.log(searchButtonAccess);
 
 //make a new elememnt DIV and adding an ul for the pages to held at
 function createDiv (){
