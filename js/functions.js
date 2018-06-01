@@ -72,18 +72,19 @@ function mockOfArrrey(){
 		mockArrey.push(names[i].innerHTML);
 	}
 }
+mockOfArrrey();
 function mockOfArreyEmails(){
 
 	//access to students emails tages
-	const names = document.querySelectorAll('.student-details span');
+	const emails = document.querySelectorAll('.student-details span');
 	//creating an arrey of email addresss
 	mockOfArreyEmail ={}
 	for (let i=0; i<mockOfArreyEmail.length;i++){
-		mockArrey.push(mockOfArreyEmail[i].innerHTML);
+		mockOfArreyEmail.push(emails[i].innerHTML);//<<<----- dosnt work. dosnt make an arrey of emails.
 	}	
 }
-mockOfArrrey();
-
+mockOfArreyEmails();
+console.log(mockOfArreyEmail);
 //search functions
 //adding event listener to button next to input field
 const searchButtonAccess= document.querySelector('.student-search button').addEventListener('click', (event) =>{
@@ -97,13 +98,17 @@ const searchButtonAccess= document.querySelector('.student-search button').addEv
 	for (let i=0;i<length;i++){
 		//indexSearch adds the index-value of found matches to the foundNames arrey.
 		const indexSearch= mockArrey.findIndex(function (element, index){
-			if ( searchTerm.inludes('@'){
+			if (searchTerm.includes('@')){
 			//check mockOfArreyEmail for matches with nested find index. then break(return) from the click event			
-			}
-			}else if (element.includes(searchTerm)){
-				found = true;
-
-				studentListDOM[index].style.display = 'inline';//showing student thatw are found in the name search
+				const emailSearch = mockOfArreyEmail.findIndex(function (element, index){
+				if (element.includes(searchTerm)){
+					studentListDOM[index].style.display = 'inline';//showing student thatw are found in the name search
+				}
+				}
+			)
+			}	else if (element.includes(searchTerm)){
+					found = true;
+					studentListDOM[index].style.display = 'inline';//showing student thatw are found in the name search
 			}
 		}
 		)	
