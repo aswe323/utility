@@ -225,7 +225,7 @@ function makeActive(){
 	}
 }
 
-buttonElements[0].setAttribute('class','active');//the href should be active no the li
+buttonElements[0].setAttribute('class','active');
 console.log(buttonElements[0]);
 //initial load of page, hiding every student on the page then showing the first 10
 function hideAndAppened() {
