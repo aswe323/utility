@@ -1,42 +1,15 @@
 /*
  KNOWN BUGS:
-
  TO-ADD:
- complete:add search elements. 
- TODO:add search functionality
- 	TODO:the given input should be searched across 2 diffrent arreys after being lowercased
-		1.names of students held in 					--->should be lowercased for the search<---
-			.student-details h2.innerHTML
-		2.emails held in the 
-			.student-details span
-		
-	TODO: if a match was found,hideAll(), then get the match index in the HTML collection then:
-		if the reminder of the index % 10 is 0
-			check if its the first item in the HTML collection (first student) if it is. enable forst 10 students
-			else start enabling students display element in tange on index +9
-		if the reminder of index % 10 is not 0
-			subtract the reminder from the index value.
-			then start enabling students in range of index +9
- TODO:add calling of page when student hit succsefuly searched.
- TODO:make an alert for the suer when he enters the wrong input in the elements and press search
- TO-REFACTOR:
-	complete:make the code more like the example snippet.
- 	conplete:make buttons inside a div element with li for each button.
-
- TESTS:
- complete:test script with exact number of students. (10 for example)
- complete:test script with less then 10 studens.
 */
 
 /*----------------------------------------------------------
- *		  MINIMUM VIABLE PRODUCT                   *
+ *		      PAGINATION V4			   *
 -----------------------------------------------------------*/
 //accesing DOM elements
 const divPage = document.querySelector('.page');//acces to first tag with page class in it. 
 const studentListDOM = document.querySelector(".student-list").children; // acces to list of li containing students
-const studentEmail = document.querySelector("div span");//access a studentListDOM email text
-const studentName =  document.querySelectorAll("div h3");//acces to studentListDOM name text
-
+buttonElements = document.querySelectorAll(".pagination li");//access to items under pagination class (buttons) <- returns nothing because its at the top of the file
 //adding a all the elements the searched  functionality will need.
 function addSearchElements(){
 	//adding a new div to hold the elements
@@ -72,42 +45,93 @@ function mockOfArrrey(){
 	}
 }
 mockOfArrrey();
+function mockOfArreyEmails(){
 
+	//access to students emails tages
+	const emails = document.querySelectorAll('.student-details span');
+	//creating an arrey of email addresss
+	mockOfArreyEmail = [];
+	for (let i=0; i<emails.length;i++){
+		mockOfArreyEmail.push(emails[i].innerHTML); 
+	}	
+}
+mockOfArreyEmails();
 //search functions
 //adding event listener to button next to input field
 const searchButtonAccess= document.querySelector('.student-search button').addEventListener('click', (event) =>{
+	//try to delete the h1 element that is being created when a failed searchs happens
+		try{document.querySelector('.page-header h1').remove();}catch{};
+	hideAll();
 	//access to the user input 
 	const searchTerm = document.querySelector('.student-search input').value;
 	//getting length of htmlcollecion
 	const length = studentListDOM.length;
-	//compare input with mockArrey	
-	const searchResualts= mockArrey.findIndex(function (element){
-		return element== searchTerm;
-	})	
-	//if the index is smaller then 10. enable first 10 students
-	if (searchResualts <= 10 && searchResualts != -1){
-	hideAll();
-	for (let i=0;i<10;i++){
-		console.log('search below 10');
-
-		if (studentListDOM.item(i) ==null){return};//if end of students then stop trying to display them
-		studentListDOM.item(i).style.display ="list-item";
-
+	//found is wether or not we found a match	
+	found = false;
+	//an arrey of index values found
+	let indexFound = [];
+	//indexSearch adds the index-value of found matches to the foundNames arrey.
+	const indexSearch= mockArrey.findIndex(function (element, index){
+		//check mockOfArreyEmail for matches with nested find index. then break(return) from the click event			
+			const emailSearch = mockOfArreyEmail.findIndex(function (element, index){
+			if (element.includes(searchTerm)){
+				if (indexFound.includes(mockOfArreyEmail.indexOf(element))){}else{indexFound.push(mockOfArreyEmail.indexOf(element))}
+				found = true;
+			
+			}
+		})
+			if (element.includes(searchTerm)){
+				if (indexFound.includes(mockArrey.indexOf(element))){}else{indexFound.push(mockArrey.indexOf(element))}
+				found = true;
+		}
 	}
-	}else if(searchResualts > 10){
-		console.log('search above 10');
-		hideAll();
-		extraToRemove= searchResualts%10;
-		firstStudent = searchResualts - extraToRemove;	
-	for (let i=firstStudent;i<firstStudent+9;i++){
-		if (studentListDOM.item(i) ==null){return};//if end of students then stop trying to display them
-		studentListDOM.item(i).style.display ="list-item";
+	)	
+	console.log(indexFound);
+	//for number of displayed students / 10 make a page. if less then 1 make 1 page. if next student in arrey is null then stop.
+	if (found == false){
+		hideAll()
+		const failed = document.createElement('h1');
+		failed.innerHTML = 'this are not the students you are looking for.. or maybe you just entered the wrong name :P';
+		document.querySelector('.page-header').appendChild(failed);	
+	
+	}else{
+		buttonElements = document.querySelectorAll(".pagination li");
+		//deleting links from previos results
+		for (let page=0;page<buttonElements.length;page++){
+			buttonElements[page].remove();
+		}
+		for (let found=0;found<10;found++){
+			studentListDOM.item(indexFound[found]).style.display ='list-item';
+			console.log('i showed you ' +studentListDOM.item(indexFound[found]));
+			if (indexFound[found+1]==null){return}
+		}
+	//get access to a list of stundets with the display style set to list-item
+//		const displayed = document.querySelectorAll('[style*="list-item"]');
+		
+	//for number of indexFound students / 10 make a page. if less then 1 make 1 page. if next student in arrey is null then stop.
+		for (let showing=0;showing<indexFound.length/10;showing++){
+			//creating an <a> element
+			let button = document.createElement("a");
+			console.log(button);
+			//adding an href attr with the vlaue of $
+			button.setAttribute('href', "#");
+			//making the inner html of the button = to showing. 
+			button.innerHTML = showing + 1;
+			//creating a new <li> element 
+			let newLi = document.createElement('li')
+			//adding the new <a> to the new <li> element
+			newLi.appendChild(button);
+			//adding the new <li> to the div with the class of pagination
+			pagesUl.appendChild(newLi);
+			if (studentListDOM.item(showing*10) == null){return};//if there is not enough student for the next apge the STAP!
+		}	
+		buttonElements = document.querySelectorAll(".pagination li");
+		buttonListeners(buttonElements);
 	}
-	}else{alert('this are not the students your lookin for')};
+	}
+);
 
-})
-
-console.log(searchButtonAccess);
+//console.log(searchButtonAccess);
 
 //make a new elememnt DIV and adding an ul for the pages to held at
 function createDiv (){
@@ -142,9 +166,6 @@ function hideAll (){
 function buttons(){
 
 	for (let index=0;index<=studentListDOM.length/10;index++){
-		
-
-
 		//creating an <a> element
 		let button = document.createElement("a");
 		console.log(button);
@@ -158,32 +179,36 @@ function buttons(){
 		newLi.appendChild(button);
 		//adding the new <li> to the div with the class of pagination
 		pagesUl.appendChild(newLi);
-		if (studentListDOM.item(index*10) == null){console.log('irigge');return};//if there is not enough student for the next apge the STAP!
+		buttonElements = document.querySelectorAll(".pagination li");
+		if (studentListDOM.item(index*10) == null){return};//if there is not enough student for the next apge the STAP!
+		
 	}
-
+	console.log(buttonElements);
 };
 //calling buttons before accesing them, so to use them in the creating of the event listeners.
 buttons();
-const buttonElements = document.querySelectorAll(".pagination li");
 //looping throw all buttons and adding event listeners to them.
-for (let buttonInstence=0;buttonInstence<buttonElements.length;buttonInstence++){
+function buttonListeners (arreyLi){
+	for (let buttonInstence=0;buttonInstence<arreyLi.length;buttonInstence++){
 
-//the event will make the approprirate students apper and hide all outher students.
-	buttonElements.item(buttonInstence).addEventListener('click', (event) =>{
+	//the event will make the approprirate students apper and hide all outher students.
+		arreyLi.item(buttonInstence).addEventListener('click', (event) =>{
 
-		let button = event.target;//set the button variable to target
-		hideAll();//hides all the student elements
-		makeActive();
-		//will add a class attribue with the value of active.
-		button.setAttribute('class','active');
-		let startCount = button.innerHTML -1;
-		//if event index is not smaller then the starting index value plus 10. continue enabling student LI
-		for (let eventIndex=(parseInt(startCount))*10; eventIndex<((parseInt(startCount)+1)*10);eventIndex++){
-			if (studentListDOM.item(eventIndex) === null){break};
-			studentListDOM.item(eventIndex).style.display='list-item';
-			}
-	})
+			let button = event.target;//set the button variable to target
+			hideAll();//hides all the student elements
+			makeActive();
+			//will add a class attribue with the value of active.
+			button.setAttribute('class','active');
+			let startCount = button.innerHTML -1;
+			//if event index is not smaller then the starting index value plus 10. continue enabling student LI
+			for (let eventIndex=(parseInt(startCount))*10; eventIndex<((parseInt(startCount)+1)*10);eventIndex++){
+				if (studentListDOM.item(eventIndex) === null){break};
+				studentListDOM.item(eventIndex).style.display='list-item';
+				}
+		})
+	}
 }
+buttonListeners (buttonElements);
 //will remove all active classes from the buttons
 function makeActive(){
 	const buttonsList = document.querySelectorAll('[href="#"]');
@@ -201,5 +226,6 @@ function hideAndAppened() {
 	
 	}
 };
+
 hideAndAppened();
 	
