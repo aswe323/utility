@@ -62,6 +62,7 @@ mockOfArreyEmails();
 //search functions
 //adding event listener to button next to input field
 const searchButtonAccess= document.querySelector('.student-search button').addEventListener('click', (event) =>{
+	//try to delete the h1 element that is being created when a failed searchs happens
 		try{document.querySelector('.page-header h1').remove();}catch{};
 	hideAll();
 	//access to the user input 
@@ -79,14 +80,12 @@ const searchButtonAccess= document.querySelector('.student-search button').addEv
 			if (element.includes(searchTerm)){
 				if (indexFound.includes(mockOfArreyEmail.indexOf(element))){}else{indexFound.push(mockOfArreyEmail.indexOf(element))}
 				found = true;
-				studentListDOM[index].style.display = 'list-item';//showing student thatw are found in the name search
 			
 			}
 		})
 			if (element.includes(searchTerm)){
 				if (indexFound.includes(mockArrey.indexOf(element))){}else{indexFound.push(mockArrey.indexOf(element))}
 				found = true;
-				studentListDOM[index].style.display = 'list-item';//showing student thatw are found in the name search
 		}
 	}
 	)	
@@ -105,10 +104,10 @@ const searchButtonAccess= document.querySelector('.student-search button').addEv
 			buttonElements[page].remove();
 		}
 	//get access to a list of stundets with the display style set to list-item
-		const displayed = document.querySelectorAll('[style*="list-item"]');
+//		const displayed = document.querySelectorAll('[style*="list-item"]');
 		
-	//for number of displayed students / 10 make a page. if less then 1 make 1 page. if next student in arrey is null then stop.
-		for (let showing=0;showing<displayed.length/10;showing++){
+	//for number of indexFound students / 10 make a page. if less then 1 make 1 page. if next student in arrey is null then stop.
+		for (let showing=0;showing<indexFound.length/10;showing++){
 			//creating an <a> element
 			let button = document.createElement("a");
 			console.log(button);
