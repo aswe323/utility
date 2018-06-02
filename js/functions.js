@@ -1,13 +1,10 @@
 /*
  KNOWN BUGS:
-	1.check if var is not being set to true in certin cases.DONE
-	2.make email search not depanded on the @ charecter ( perhaps make name and email search seamlessly ru in the same loop?) DONE
  TO-ADD:
-	1.make a page calculator for results of the search.
 */
 
 /*----------------------------------------------------------
- *		      PAGINATION V3			   *
+ *		      PAGINATION V4			   *
 -----------------------------------------------------------*/
 //accesing DOM elements
 const divPage = document.querySelector('.page');//acces to first tag with page class in it. 
@@ -105,6 +102,8 @@ const searchButtonAccess= document.querySelector('.student-search button').addEv
 		}
 		for (let found=0;found<10;found++){
 			studentListDOM.item(indexFound[found]).style.display ='list-item';
+			console.log('i showed you ' +studentListDOM.item(indexFound[found]));
+			if (indexFound[found+1]==null){return}
 		}
 	//get access to a list of stundets with the display style set to list-item
 //		const displayed = document.querySelectorAll('[style*="list-item"]');
@@ -126,6 +125,7 @@ const searchButtonAccess= document.querySelector('.student-search button').addEv
 			pagesUl.appendChild(newLi);
 			if (studentListDOM.item(showing*10) == null){return};//if there is not enough student for the next apge the STAP!
 		}	
+		buttonElements = document.querySelectorAll(".pagination li");
 		buttonListeners(buttonElements);
 	}
 	}

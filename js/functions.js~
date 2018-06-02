@@ -103,6 +103,11 @@ const searchButtonAccess= document.querySelector('.student-search button').addEv
 		for (let page=0;page<buttonElements.length;page++){
 			buttonElements[page].remove();
 		}
+		for (let found=0;found<10;found++){
+			studentListDOM.item(indexFound[found]).style.display ='list-item';
+			console.log('i showed you ' +studentListDOM.item(indexFound[found]));
+			if (indexFound[found+1]==null){return}
+		}
 	//get access to a list of stundets with the display style set to list-item
 //		const displayed = document.querySelectorAll('[style*="list-item"]');
 		
@@ -123,6 +128,7 @@ const searchButtonAccess= document.querySelector('.student-search button').addEv
 			pagesUl.appendChild(newLi);
 			if (studentListDOM.item(showing*10) == null){return};//if there is not enough student for the next apge the STAP!
 		}	
+		buttonElements = document.querySelectorAll(".pagination li");
 		buttonListeners(buttonElements);
 	}
 	}
