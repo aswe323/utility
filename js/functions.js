@@ -4,7 +4,7 @@
 */
 
 /*----------------------------------------------------------
- *		      PAGINATION V4			   *
+ *		      PAGINATION V5			   *
 -----------------------------------------------------------*/
 //accesing DOM elements
 const divPage = document.querySelector('.page');//acces to first tag with page class in it. 
@@ -60,7 +60,7 @@ mockOfArreyEmails();
 //adding event listener to button next to input field
 const searchButtonAccess= document.querySelector('.student-search button').addEventListener('click', (event) =>{
 	//try to delete the h1 element that is being created when a failed searchs happens
-		try{document.querySelector('.page-header h1').remove();}catch{};
+		try{document.querySelector('.student-list p').remove();}catch{};
 	hideAll();
 	//access to the user input 
 	const searchTerm = document.querySelector('.student-search input').value;
@@ -95,9 +95,9 @@ const searchButtonAccess= document.querySelector('.student-search button').addEv
 	//for number of displayed students / 10 make a page. if less then 1 make 1 page. if next student in arrey is null then stop.
 	if (found == false){
 		hideAll()
-		const failed = document.createElement('h1');
+		const failed = document.createElement('p');
 		failed.innerHTML = 'this are not the students you are looking for.. or maybe you just entered the wrong name :P';
-		document.querySelector('.page-header').appendChild(failed);	
+		document.querySelector('.student-list').appendChild(failed);	
 		for (let page=0;page<buttonElements.length;page++){
 			buttonElements[page].remove();
 		}
@@ -225,8 +225,7 @@ function makeActive(){
 	}
 }
 
-buttonElements[0].setAttribute('class','active');//the href should be active no the li
-console.log(buttonElements[0]);
+buttonElements[0].querySelector('a').setAttribute('class','active');//the href should be active no the li
 //initial load of page, hiding every student on the page then showing the first 10
 function hideAndAppened() {
 	hideAll();
