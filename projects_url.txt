@@ -1,3 +1,16 @@
-project1
-project2
-project3
+git remote add project1 https://github.com/aswe323/techdegree_project1 
+
+git push --set-upstream project1 master
+
+git remote add project2	https://github.com/aswe323/project2-techdegree-treehouse.com
+
+git push --set-upstream project2 master
+
+git remote add project3	https://github.com/aswe323/project3
+
+git push --set-upstream project3 master
+
+git remote add utility	https://github.com/aswe323/utility 
+
+git push --set-upstream utility master
+
