@@ -1,6 +1,5 @@
 #!bin/bash
 if ping google.com -n 1; then
-	echo 'test'
 	echo '|-------------------|'
 	echo '|Connetion Confirmed|'
 	echo '|-------------------|'
