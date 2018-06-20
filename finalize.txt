@@ -1,6 +1,6 @@
 if ping google.com -n 1; then
 	echo '|-------------------|'
-	echo '|Connetion Confirmed|'
+	echo '|Connection Confirmed|'
 	echo '|-------------------|'
 	echo '  attempting to add commit and push'
 	if git add -u; then
