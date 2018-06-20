@@ -1,13 +1,11 @@
-#!bin/bash
 if ping google.com -n 1; then
-	echo 'test'
 	echo '|-------------------|'
 	echo '|Connetion Confirmed|'
 	echo '|-------------------|'
 	echo '  attempting to add commit and push'
 	if git add -u; then
 	 if git commit -m"auto commit"; then
-	  git push $1 master;
+	  git push;
 fi
 fi
 else
