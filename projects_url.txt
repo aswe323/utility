@@ -12,4 +12,7 @@ echo "added project4"
 
 git remote add utility	https://github.com/aswe323/utility 
 echo "added utility"
+echo "Adding finalize script to current directory"
 
+git fetch utility
+git checkout FETCH_HEAD -- finalize.txt
