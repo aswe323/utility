@@ -1,0 +1,160 @@
+line1=(_ _ _)
+line2=(_ _ _)
+line3=(_ _ _)
+
+print_board() {
+echo ${line1[*]}
+echo ${line2[*]}
+echo ${line3[*]}
+}
+
+token=o
+
+turn(){
+print_board
+echo "its turn $token! please choose a row to place your token"
+game
+}
+
+game(){
+	read action
+	if [ $action -eq 1 ]; then 
+		echo "what colum?"	
+		read action
+		if [ $action -eq 1 ]; then
+			if [ ${line1[0]} = "_" ]; then
+				line1[0]=$token
+				next
+			else 
+				turn
+			fi
+		fi
+		if [ $action -eq 2 ]; then
+			if [ ${line1[1]} = _ ]; then
+				line1[1]=$token
+				next
+			else
+				turn
+			fi
+		fi
+		if [ $action -eq 3 ];  then
+			if [ ${line1[2]} = _ ]; then
+				line1[2]=$token
+				next
+			else
+				turn
+			fi
+		fi	
+	fi
+	if [ $action -eq 2 ]; then 
+		echo "what colum?"	
+		read action
+		if [ $action -eq 1 ]; then
+			if [ ${line2[0]} = _ ]; then 
+				line2[0]=$token
+				next
+			else
+				turn
+			fi
+		fi
+		if [ $action -eq 2 ]; then
+			if [ ${line2[1]} = _ ]; then
+			line2[1]=$token
+			next
+			else 
+				turn
+			fi
+		fi
+		if [ $action -eq 3 ];  then
+			if [ ${line2[2]} = _ ]; then
+				line2[2]=$token
+				next
+			else 
+				turn
+			fi
+		fi
+	fi
+	if [ $action -eq 3 ]; then 
+		echo "what colum?"	
+		read action
+		if [ $action -eq 1 ]; then
+			if [ ${line3[0]} = _ ]; then
+				line3[0]=$token
+				next
+			else 
+				turn
+			fi
+		fi
+		if [ $action -eq 2 ]; then
+			if [ ${line3[1]} = _ ]; then
+				line3[1]=$token
+				next
+			else 
+				turn
+			fi
+		fi
+		if [ $action -eq 3 ];  then
+			if [ ${line3[2]} = _ ]; then
+				line3[2]=$token
+				next
+			else
+				turn
+			fi
+		fi
+	fi
+}
+next(){
+	did_he_win
+	if [ $token = x ]; then 
+	token=o
+	turn
+	fi
+	if [ $token = o ]; then
+	token=x
+	turn
+	fi
+}
+
+did_he_win () {
+	if [ ${line1[0]} = $token ] && [ ${line1[1]} = $token ] && [ ${line1[2]} = $token ]; then
+		echo winner is $token !!! nice!
+		end_game
+	fi
+	if [ ${line2[0]} = $token ] && [ ${line2[1]} = $token ] && [ ${line2[2]} = $token ]; then
+		echo winner is $token !!! nice!
+		end_game
+	fi
+	if [ ${line3[0]} = $token ] && [ ${line3[1]} = $token ] && [ ${line3[2]} = $token ]; then
+		echo winner is $token !!! nice!
+		end_game
+	fi
+	if [ ${line1[0]} = $token ] && [ ${line2[0]} = $token ] && [ ${line3[0]} = $token ]; then
+		echo winner is $token !!! nice!
+		end_game
+	fi
+	if [ ${line1[1]} = $token ] && [ ${line2[1]} = $token ] && [ ${line3[1]} = $token ]; then
+		echo winner is $token !!! nice!
+		end_game
+	fi
+	if [ ${line1[2]} = $token ] && [ ${line2[2]} = $token ] && [ ${line3[2]} = $token ]; then
+		echo winner is $token !!! nice!
+		end_game
+	fi
+	if [ ${line1[0]} = $token ] && [ ${line2[1]} = $token ] && [ ${line3[2]} = $token ]; then
+		echo winner is $token !!! nice!
+		end_game
+	fi
+	if [ ${line1[2]} = $token ] && [ ${line2[1]} = $token ] && [ ${line3[0]} = $token ]; then
+		echo winner is $token !!! nice!
+		end_game
+	fi
+}
+end_game(){
+echo "press any key to quit"
+read
+exit
+}
+turn
+
+
+
