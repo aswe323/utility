@@ -1,3 +1,4 @@
+clear
 line1=(_ _ _)
 line2=(_ _ _)
 line3=(_ _ _)
@@ -12,7 +13,7 @@ token=o
 
 turn(){
 print_board
-echo "its turn $token! please choose a row to place your token"
+echo "its turn $token! please enter the NUMBER of ROW"
 game
 }
 
@@ -104,7 +105,9 @@ game(){
 	fi
 }
 next(){
+
 	did_he_win
+	clear
 	if [ $token = x ]; then 
 	token=o
 	turn
