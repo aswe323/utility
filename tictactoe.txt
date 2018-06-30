@@ -153,6 +153,7 @@ did_he_win () {
 	fi
 }
 end_game(){
+print_board
 echo "press any key to quit"
 read
 exit
