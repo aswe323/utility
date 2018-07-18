@@ -1,0 +1,16 @@
+checker(){
+echo "checking for network connectivity"
+echo
+echo 
+echo
+if  ping google.com -n 1 ; then 
+		echo "----------------------"
+		echo "*CONFIRMED CONNECTION*"
+		echo "----------------------"
+		exit
+	else
+		echo "no connection"	
+		checker
+	fi
+}
+checker
