@@ -1,4 +1,4 @@
-if ping google.com -c 1; then
+if ping google.com; then
 	echo '|-------------------|'
 	echo '|Connection Confirmed|'
 	echo '|-------------------|'
