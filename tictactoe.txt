@@ -1,4 +1,5 @@
 clear
+
 line1=(_ _ _)
 line2=(_ _ _)
 line3=(_ _ _)
@@ -161,8 +162,14 @@ exit
 }
 turn
 
-<<'a'
-row1_selected(){
+<<comment
+
+row_selcted(){
+	echo "choose a row"
+	read action		
+
+}
+column_select(row){
 	read action
 	if [ ${line1[$action]} = "_" ]; then
 		line1[$action]=$token
@@ -172,5 +179,4 @@ row1_selected(){
 		fi
 	fi
 }
-'a'
-
+comment
